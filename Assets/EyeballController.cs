@@ -8,9 +8,9 @@ public class EyeballController : MonoBehaviour {
 		transform.LookAt (Camera.allCameras[0].transform);
 	}
 
-	void OnCollisionEnter (Collision collision) {
-		if (collision.gameObject.GetComponent<EyeballController> () != null) {
-			Destroy (collision.gameObject);
+	void OnTriggerEnter (Collider other) {
+		if (other.gameObject.GetComponent<EyeballController> () != null) {
+			Destroy (other.gameObject);
 		}
 	}
 

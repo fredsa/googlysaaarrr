@@ -12,8 +12,6 @@ public class GooglyManager : MonoBehaviour {
 		if (Input.touchCount < 1 || (touch = Input.GetTouch (0)).phase != TouchPhase.Began) {
 			return;
 		}
-		Debug.Log ("---------------------------");
-		Debug.Log ("touch=" + touch);
 
 		// Ray cameraRay = Camera.allCameras[0].ScreenPointToRay (touch.position);
 		// RaycastHit hitInfo;
@@ -28,18 +26,11 @@ public class GooglyManager : MonoBehaviour {
 
 		TrackableHit hitResult;
 		if (!Frame.Raycast (touch.position.x, touch.position.y, TrackableHitFlags.FeaturePointWithSurfaceNormal, out hitResult)) {
-			Debug.Log ("Frame.Raycast() -> none");
 			return;
 		}
-		Debug.Log ("hitResult=" + hitResult);
-		Debug.Log ("hitResult.Pose=" + hitResult.Pose);
-		Debug.Log ("hitResult.Trackable=" + hitResult.Trackable);
 
 		Anchor anchor = hitResult.Trackable.CreateAnchor (hitResult.Pose);
-		Debug.Log ("anchor=" + anchor);
-		Debug.Log ("anchor.transform=" + anchor.transform);
 		GameObject eyeball = GameObject.Instantiate (eyeballPrefab);
-		Debug.Log ("eyeball=" + eyeball);
 
 		eyeball.transform.SetParent(anchor.transform, false);
 	}
