@@ -5,6 +5,10 @@ using UnityEngine;
 public class DeleteOnStart : MonoBehaviour {
 
 	void Awake () {
+		if (Application.isEditor) {
+			return;
+		}
+		
 		Destroy (gameObject);
 	}
 }
